@@ -6,8 +6,8 @@
 </description>
     <link>http://yourdomain.com/</link>
     <atom:link href="http://yourdomain.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 17 Oct 2020 22:09:24 +0800</pubDate>
-    <lastBuildDate>Sat, 17 Oct 2020 22:09:24 +0800</lastBuildDate>
+    <pubDate>Sat, 17 Oct 2020 22:42:49 +0800</pubDate>
+    <lastBuildDate>Sat, 17 Oct 2020 22:42:49 +0800</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
@@ -35,6 +35,61 @@
         <category>jekyll</category>
         
         <category>update</category>
+        
+      </item>
+    
+      <item>
+        <title>Xgboos</title>
+        <description>&lt;p&gt;XGBoos博客&lt;/p&gt;
+
+&lt;p&gt;XGBoost是一种以决策树（cart树）为基学习器的集成学习方法。&lt;/p&gt;
+
+&lt;p&gt;XGBoost的目标：
+&lt;script type=&quot;math/tex&quot;&gt;Loss=\large{\sum\nolimits_{i=1}^{n}{l(y_i,\hat{y_i}) + \sum\nolimits_{k=1}^{T}{\Omega(f_k)}}, f_k\in F}&lt;/script&gt;&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\large{\Omega(f_k)=\gamma{T}+\frac{1}{2}\lambda\sum\nolimits_{j}^{T}w_j^2}&lt;/script&gt;
+
+&lt;p&gt;$\hat{y_i}$代表模型预测值，$\Omega(f_k)$为正则项，代表第k颗树的复杂度&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\large{\begin{align}
+Loss^{(t)} &amp;= \large{\sum\nolimits_{i=1}^{n}{l(y_i,\hat{y_i}^{(t)}) + \sum\nolimits_{k=1}^{T}{\Omega(f_k)}}} \\
+  &amp;= \large{\sum\nolimits_{i=1}^{n}{l(y_i,\hat{y_i}^{(t-1)}+f_t({x_i})) + {\Omega(f_t)}}}+const
+\end{align}} %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;泰勒二阶展开为
+&lt;script type=&quot;math/tex&quot;&gt;\large{f(x + \Delta{x}){\approx}f(x)+f^{&#39;}{(x)}{\Delta}x+\frac{1}{2}+f^{&#39;&#39;}{(x)}{\Delta}x^2}&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;将泰勒二阶展开应用于Loss函数，可得
+&lt;script type=&quot;math/tex&quot;&gt;\large{Loss{\approx}\sum\nolimits_{i-1}^n{[l(y_i,{\hat{y}}^{t-1})+g_if_t(x_i)+\frac{1}{2}h_if_t^2(x_i)]}+{\Omega(f_t)}+const}&lt;/script&gt;&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\large{g_i={\partial}_^{t-1}}{l(y_i,{\hat{y}}^{t-1})},h_i={\partial}_^{t-1}}^{2}{l(y_i,{\hat{y}}^{t-1})}}&lt;/script&gt;
+
+&lt;p&gt;移除常数项，此次迭代的目标函数为
+&lt;script type=&quot;math/tex&quot;&gt;\large{Object=\sum\nolimits_{i-1}^n{[g_if_t(x_i)+\frac{1}{2}h_if_t^2(x_i)]}+{\Omega(f_t)}}&lt;/script&gt;
+定义$I_j$为第$j$个叶子节点里的样本ID的集合，即$I_j={i|q(x_i)=j}$，将正则项带入
+&lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+\large{\begin{align}
+Object&amp;=\sum\nolimits_{i-1}^n{[g_if_t(x_i)+\frac{1}{2}h_if_t^2(x_i)]}+{\Omega(f_t)} \\
+&amp;=\sum\nolimits_{i-1}^n{[g_if_t(x_i)+\frac{1}{2}h_if_t^2(x_i)]}+\gamma{T}+\frac{1}{2}\lambda\sum\nolimits_{j}^{T}w_j^2 \\
+&amp;=\sum_{j-1}^{T}{[(\sum_{j\in{I_j}}g_i)w_i+\frac{1}{2}(\sum_{j\in{I_j}}h_i+\lambda)w_j^2]}+{\lambda}T
+\end{align}} %]]&gt;&lt;/script&gt;
+将Loss看作以$f_t{(x_i)}$为自变量的二次函数，求解最小值，即
+&lt;script type=&quot;math/tex&quot;&gt;\large{w_j^*=-\frac{\sum\nolimits_{i{\in}I_j}g_i}{\sum\nolimits_{i{\in}I_j}{h_i}+\lambda}} \\
+\large{Object^{(t)}(q)=-\frac{1}{2}{\sum_{j-1}^{T}{\frac{(\sum\nolimits_{i{\in}I_j}g_i)^2}{\sum\nolimits_{i{\in}I_j}h_i+\lambda}}}+{\lambda}T}&lt;/script&gt;
+假设当前节点的样本集合为$I$,分裂后节点集合为$I_L$和$I_R$，即$I=I_L{ }{\bigcup}{ }I_R$，则此次划分带来的增益为
+&lt;script type=&quot;math/tex&quot;&gt;% &lt;![CDATA[
+\large{\begin{align}
+L_{split}&amp;=Object_{I_L}+Object_{I_R}-Object_{I} \\
+&amp;=\frac{1}{2}{[\frac{(\sum\nolimits_{i{\in}I_L}g_i)^2}{\sum\nolimits_{i{\in}I_L}h_i+\lambda}+\frac{(\sum\nolimits_{i{\in}I_R}g_i)^2}{\sum\nolimits_{i{\in}I_R}h_i+\lambda}-\frac{(\sum\nolimits_{i{\in}I}g_i)^2}{\sum\nolimits_{i{\in}I}h_i+\lambda}]}-\lambda
+\end{align}} %]]&gt;&lt;/script&gt;
+以此为增益不断划分节点即可&lt;/p&gt;
+
+</description>
+        <pubDate>Sat, 17 Oct 2020 00:00:00 +0800</pubDate>
+        <link>http://yourdomain.com/2020/10/17/XGBoos.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/2020/10/17/XGBoos.html</guid>
+        
         
       </item>
     
