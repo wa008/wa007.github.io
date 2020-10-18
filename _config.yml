@@ -20,9 +20,9 @@ text_skin: default # "default" (default), "dark", "forest", "ocean", "chocolate"
 highlight_theme: default # "default" (default), "tomorrow", "tomorrow-night", "tomorrow-night-eighties", "tomorrow-night-blue", "tomorrow-night-bright"
 url     : # the base hostname & protocol for your site e.g. https://www.someone.com
 baseurl : # does not include hostname
-title   : Librarius's Blog
+title   : wa008's Blog
 description: > # this means to ignore newlines until "Language & timezone"
-  Math is my life. | 李亚龙的博客
+  Math is my life. | wa008的博客
 
 
 ## => Language and Timezone
@@ -35,25 +35,23 @@ timezone: Asia/Shanghai # see https://en.wikipedia.org/wiki/List_of_tz_database_
 ##############################
 author:
   type      : # "person" (default), "organization"
-  name      : Yang Lee
+  name      : wa008
   url       :
   avatar    : # path or url of avatar image
   bio       : Math is my life.
-  email     : lloyar@live.com
+  email     : 2864436211@qq.com
   facebook  : # "user_name" the last part of your profile url, e.g. https://www.facebook.com/user_name
-  twitter   : lloyarlee # "user_name" the last part of your profile url, e.g. https://twitter.com/user_name
   googleplus: # "user_id"   the last part of your profile url, e.g. https://plus.google.com/u/0/user_id
   weibo     : # "user_id"   the last part of your profile url, e.g. https://www.weibo.com/user_id/profile?...
   douban    : #179044213 # "user_name" the last part of your profile url, e.g. https://www.douban.com/people/user_name/
   linkedin  : # "user_name" the last part of your profile url, e.g. https://www.linkedin.com/in/user_name/
-  github    : lloyar # "user_name" the last part of your profile url, e.g. https://github.com/user_name
+  github    : wa008 # "user_name" the last part of your profile url, e.g. https://github.com/user_name
   npm       : # "user_name" the last part of your profile url, e.g. https://www.npmjs.com/~user_name
-  telegram  : librariuss # "user_name" the last part of your profile url, e.g. https://t.me/user_name
 
 
 ## => GitHub Repository (if the site is hosted by GitHub)
 ##############################
-repository: Lloyar/lloyar.github.io
+repository: wa008/lloyar.github.io
 repository_tree: master
 
 
